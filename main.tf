@@ -65,9 +65,9 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.msur.certificate_authority.0.data)
   host                   = data.aws_eks_cluster.msur.endpoint
   exec {
-    api_version = "client.authentication.k8s.io/v1alpha1"
+    api_version = "client.authentication.k8s.io/v1beta1"
     command     = "aws-iam-authenticator"
-    args        = ["token", "-i", "${data.aws_eks_cluster.msur.name}"]
+    args        = ["token", "-i", data.aws_eks_cluster.msur.name]
   }
 }
 
